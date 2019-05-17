@@ -20,6 +20,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import {ToastaModule} from 'ngx-toasta';
 import { LandingComponent } from './component/landing/landing.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CrushServiceComponent } from './component/crush-service/crush-service.component';
 
 
 
@@ -33,7 +34,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FooterComponent,
     PostmanagementComponent,
     SearchFilterPipe,
-    LandingComponent
+    LandingComponent,
+    CrushServiceComponent
   ],
   imports: [
     BrowserModule,
