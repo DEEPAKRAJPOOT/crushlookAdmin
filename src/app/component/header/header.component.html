@@ -1,0 +1,61 @@
+<!-- header starts here -->
+<header class="header" id="header" [ngClass]="showMenu ? 'bodyshrink' : ''">
+  <aside class="left_sidebar">
+    <div class="left_inner_data scrollerNew">
+      <div class="sidebar_logo text-center pt-4 pb-5">
+        <a href="dashboard.php" class="d-inline-block">
+          <img src="./assets/img/logo.png" alt="" class="img-fluid primary_logo">
+          <img src="./assets/img/logo2.png" alt="" class="img-fluid secondary_logo">
+        </a>
+      </div>
+      <div class="sidemenu_listing">
+        <ul class="ul_nostyle main_menu_list">
+          <li>
+            <a class="clearfix p-2 d-block " [routerLink]="['/dashboard']" routerLinkActive="active" href="#"><i class="fa fa-dashboard fz24 mr-3" (click)="showmenu();"></i>
+              <span>Dashboard</span></a>
+          </li>
+          <li>
+            <a class="clearfix p-2 d-block" [routerLink]="['/users']" routerLinkActive="active" href="#"><i class="fa fa-user-circle fz24 mr-3" (click)="showmenu();"></i>
+              <span>User</span></a>
+          </li>
+          <li>
+            <a class="clearfix p-2 d-block" [routerLink]="['/postmanagement']" routerLinkActive="active" href="#"><i class="fa fa-female fz24 mr-3" (click)="showmenu();"></i>
+              <span>Posts Management</span></a>
+          </li>
+        </ul>
+      </div>      
+    </div>
+  </aside>
+  <div class="top_right_navs">
+    <div class="top_strip clearfix">
+      <div class="pull-left mt-2">
+        <ul class="ul_nostyle list-inline mt-3 mb-3">
+          <li class="vam list-inline-item">
+            <a href="javascript:void(0);" class="trigger_aside base_color" (click)="showmenu();">
+              <i class="fa fa-bars"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="pull-right">
+        <div class="post_login_name clearfix">
+          <ul class="ul_nostyle pull-right list-inline clearfix mt-3 mb-3">
+            <li class="list-inline-item logout_bord pr-0">
+              <a class="dropdown-toggle" data-toggle="dropdown">
+                <img alt="" class="rounded-circle mr-3" src="http://via.placeholder.com/40x40">                  
+                <span class="font_bold font-weight-bold">Richard</span>
+                
+                <div class="dropdown-menu" style="top: 63px !important">
+                  
+                  <a class="dropdown-item" href="#" (click)="logout($event)"><span class="fa fa-sign-out mr-4"></span> Logout</a>
+                  
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- / header ends here -->

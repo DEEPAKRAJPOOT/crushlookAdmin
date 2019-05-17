@@ -1,0 +1,120 @@
+<app-header ></app-header>
+<div class="content page_data">
+    <div class="mb-5 clearfix">
+        <p class="mb-0 fz35 pt-3">User</p>
+    </div>
+    <div class="custom_table">
+        <div class="table-responsive">
+                <div class="col-6 float-left">
+                        <div><span style="color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: inherit; font-weight: inherit;"><button (click)="exportAsXLSX()" type="button" id="exportReportButton" class="btn btn-primary">Export Users</button></span></div>
+     
+                </div>
+                <div class="col-6 float-right">
+                        <input [(ngModel)]="searchText" placeholder="Enter Name Or Email for Search" class="form-control search-border float-right" />
+                </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center fz14">S.No.</th>
+                        <th class="text-center fz14">Name</th>
+                        <th class="text-center fz14">Email</th>
+                        <th class="text-center fz14">Account Created Date</th>
+                        <th class="text-center fz14">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let mydata of  (allData
+                    | searchFilter
+                            : { name: searchText, email: searchText }
+                    | paginate
+                      : {
+                          itemsPerPage: itemsPerPage,
+                          currentPage: page
+                        });
+                  let i = index">
+                        <td class="text-center fz14">{{(page - 1) * itemsPerPage + (i + 1)}}.</td>
+                        <td class="text-center fz14">{{mydata.name}}</td>
+                        <td class="text-center fz14">{{mydata.email}}</td>
+                        <td class="text-center fz14">{{mydata.createdDate.date  | date: 'yyyy-MM-dd'}}</td>
+                        <td class="td-actions text-center" >
+                            <button type="button" class="btn btn-primary pt-2 pb-2 pl-3 pr-3" *ngIf="mydata.status == 0" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverEnableMessage" placement="left" (confirm)="changeUserStatus(1,mydata.id,i)" (cancel)="cancelClicked = true">
+                                Disable
+                            </button>
+                            <button type="button" class="btn btn-success pt-2 pb-2 pl-3 pr-3" *ngIf="mydata.status == 1"  mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverDisableMessage" placement="left" (confirm)="changeUserStatus(0,mydata.id,i)" (cancel)="cancelClicked = true">
+                                Enable
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+
+    </div>
+</div>
+
+<!-- add edit_category modal start here -->
+<div class="modal fade" id="edit_category" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-signup" role="document">
+        <div class="modal-content">
+            <div class="card card-signup card-plain m-0">
+                <div class="modal-header">
+                    <h5 class="modal-title card-title">Edit Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="" class="w-100 pl-4 pr-4">
+                            <div class="col-12">
+                                <label for="customFile" class="mb-0">
+                                    <img src="http://via.placeholder.com/120x120" class="img-fluid rounded" alt="">
+                                    <span class="align-bottom ml-3">Upload Photo</span>
+                                </label>
+                                <input type="file" name="filename" class="custom-file-input d-none" id="customFile">
+                            </div>
+                            <div class="form-group col-12 mt-4">
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Category Name">
+                            </div>
+                            <div class="col-12">
+                                <div class="col_selector mt-3">
+                                    <label class="mr-5">
+                                        <span>Category Price : </span>
+                                    </label>
+                                    <div class="form-check form-check-radio form-check-inline mr-5">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Free
+                                            <span class="circle">
+                                  <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-radio form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Paid
+                                            <span class="circle">
+                                  <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Price">
+                            </div>
+                            <div class="col-12">
+                                <div class="col_selector text-right">
+                                    <button type="submit" class="btn btn-primary mr-3">Save</button>
+                                    <button type="submit" class="btn btn-primary">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- add modal end here -->
+<!-- <app-footer></app-footer> -->
